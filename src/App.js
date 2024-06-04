@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import 'tailwindcss/tailwind.css';
@@ -51,21 +50,21 @@ const App = () => {
   }, [sections]);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    <div className="min-h-screen flex flex-col bg-gray-900 text-white font-sans">
       <nav className="bg-gray-800 p-4 fixed w-full z-10 top-0 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
           <a className="flex items-center text-2xl font-bold" href="#"><img className="w-8 h-8 mr-2" src={"logo192.png"} alt="Logo" style={{ filter: "grayscale(1) brightness(5.5)" }} />Goblin Powered</a>
           <div className="space-x-4">
-            <a className="hover:text-gray-400" href="#">Home</a>
-            <a className="hover:text-gray-400" href="#">About</a>
-            <a className="text-gray-500" href="#">Log In</a>
+            <a className="hover:text-gray-400 invisible" href="#">Home</a>
+            <a className="hover:text-gray-400 invisible" href="#">About</a>
+            <a className="text-gray-500 invisible" href="#">Log In</a>
           </div>
         </div>
       </nav>
 
-      <div className="pt-16 h-screen bg-cover bg-center" style={{ backgroundImage: "url('bgimg.webp')" }}>
-        <div className="container mx-auto flex pt-4">
-          <div className="w-3/4 pr-4">
+      <div className="pt-16 flex-grow bg-cover bg-center" style={{ backgroundImage: "url('bgimg.webp')" }}>
+        <div className="container mx-auto flex flex-col lg:flex-row pt-4">
+          <div className="w-full lg:w-3/4 pr-4 pl-4">
             {sections.filter(section => section.title === 'Featured Projects').map((section, sectionIndex) => (
               <section key={sectionIndex} className="h-full">
                 <h2 className="text-4xl font-bold text-center mb-6 underline project-title">{section.title}</h2>
@@ -96,7 +95,7 @@ const App = () => {
                         {project.github && (
                           <div className="pt-2">
                             <a href={project.github} className="text-gray-400 hover:text-gray-200">
-                              <i className="fab fa-github text-xl"></i>
+                              <i className="fab fa-github text-xl"></i> GitHub
                             </a>
                           </div>
                         )}
@@ -107,7 +106,7 @@ const App = () => {
               </section>
             ))}
           </div>
-          <div className="w-1/4 pl-4">
+          <div className="w-full lg:w-1/4 pl-4 pr-4 mt-8 lg:mt-0">
             {sections.filter(section => section.title !== 'Featured Projects').map((section, sectionIndex) => (
               <section key={sectionIndex} className="h-full">
                 <h2 className="text-2xl font-bold mb-4 underline project-title">{section.title}</h2>
@@ -136,7 +135,7 @@ const App = () => {
                           {project.github && (
                             <div className="pt-2">
                               <a href={project.github} className="text-gray-400 hover:text-gray-200">
-                                <i className="fab fa-github text-xl"></i>
+                                <i className="fab fa-github text-xl"></i> GitHub
                               </a>
                             </div>
                           )}
@@ -151,7 +150,7 @@ const App = () => {
         </div>
       </div>
 
-      <footer className="bg-gray-800 p-4 text-center">
+      <footer className="bg-gray-800 p-4 text-center mt-auto">
         <p>&copy; 2024 Goblin Powered. All rights reserved.</p>
       </footer>
     </div>
