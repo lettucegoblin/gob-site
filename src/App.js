@@ -54,25 +54,24 @@ const App = () => {
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       <nav className="bg-gray-800 p-4 fixed w-full z-10 top-0 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
-          <a className="text-2xl font-bold" href="#">Goblin Powered</a>
+          <a className="flex items-center text-2xl font-bold" href="#"><img className="w-8 h-8 mr-2" src={"logo192.png"} alt="Logo" style={{ filter: "grayscale(1) brightness(5.5)" }} />Goblin Powered</a>
           <div className="space-x-4">
             <a className="hover:text-gray-400" href="#">Home</a>
             <a className="hover:text-gray-400" href="#">About</a>
-            <a className="hover:text-gray-400" href="#">Activity Todo Totem</a>
             <a className="text-gray-500" href="#">Log In</a>
           </div>
         </div>
       </nav>
 
       <div className="pt-16 h-screen bg-cover bg-center" style={{ backgroundImage: "url('bgimg.webp')" }}>
-        <div className="container mx-auto flex" >
-          <div className="w-3/4 pr-4" >
+        <div className="container mx-auto flex pt-4">
+          <div className="w-3/4 pr-4">
             {sections.filter(section => section.title === 'Featured Projects').map((section, sectionIndex) => (
-              <section key={sectionIndex} className="h-full" >
-                <h2 className="text-4xl font-bold text-center mb-8">{section.title}</h2>
+              <section key={sectionIndex} className="h-full">
+                <h2 className="text-4xl font-bold text-center mb-6 underline project-title">{section.title}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {section.projects.map((project, projectIndex) => (
-                    <div key={projectIndex} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                    <div key={projectIndex} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg pb-3 hover:scale-105 transform transition duration-150">
                       <a href={project.link}>
                         {project.media_type === 'video' ? (
                           <video
@@ -82,15 +81,25 @@ const App = () => {
                             muted
                             loop
                             autoPlay
-                            
                           ></video>
+                        ) : project.media_type === 'fontawesome' ? (
+                          <div className="flex items-center justify-center h-64">
+                            <i className={`${project.media} text-6xl`}></i>
+                          </div>
                         ) : (
                           <img className="w-full" src={resolveUrl(project.media)} alt={project.title} />
                         )}
                       </a>
-                      <div className="p-4">
-                        <h3 className="text-2xl font-bold">{project.title}</h3>
-                        <p>{project.description}</p>
+                      <div className="p-2 pl-4">
+                        <h3 className="text-2xl font-bold underline project-title mb-2">{project.title}</h3>
+                        <p className='pl-1 pr-1'>{project.description}</p>
+                        {project.github && (
+                          <div className="pt-2">
+                            <a href={project.github} className="text-gray-400 hover:text-gray-200">
+                              <i className="fab fa-github text-xl"></i>
+                            </a>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -101,10 +110,10 @@ const App = () => {
           <div className="w-1/4 pl-4">
             {sections.filter(section => section.title !== 'Featured Projects').map((section, sectionIndex) => (
               <section key={sectionIndex} className="h-full">
-                <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
+                <h2 className="text-2xl font-bold mb-4 underline project-title">{section.title}</h2>
                 <div className="space-y-4">
                   {section.projects.map((project, projectIndex) => (
-                    <div key={projectIndex} className="flex items-center bg-gray-800 rounded-lg overflow-hidden shadow-lg p-2">
+                    <div key={projectIndex} className="flex items-center bg-gray-800 rounded-lg overflow-hidden shadow-lg p-2 hover:scale-105 transform transition duration-150">
                       <a href={project.link} className="flex items-center">
                         {project.media_type === 'video' ? (
                           <video
@@ -114,12 +123,23 @@ const App = () => {
                             loop
                             autoPlay
                           ></video>
+                        ) : project.media_type === 'fontawesome' ? (
+                          <div className="flex items-center justify-center h-12 w-12">
+                            <i className={`${project.media} text-xl text-center min-w-12`}></i>
+                          </div>
                         ) : (
                           <img className="w-12 h-12" src={resolveUrl(project.media)} alt={project.title} />
                         )}
                         <div className="ml-4">
-                          <h3 className="text-lg font-bold">{project.title}</h3>
+                          <h3 className="text-lg font-bold underline">{project.title}</h3>
                           <p className="text-sm">{project.description}</p>
+                          {project.github && (
+                            <div className="pt-2">
+                              <a href={project.github} className="text-gray-400 hover:text-gray-200">
+                                <i className="fab fa-github text-xl"></i>
+                              </a>
+                            </div>
+                          )}
                         </div>
                       </a>
                     </div>

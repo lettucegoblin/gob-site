@@ -12,3 +12,7 @@ body {
 .bg-center {
   background-position: center;
 }
+
+.project-title {
+  text-shadow: -2px 2px 2px black;
+}
