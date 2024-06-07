@@ -62,13 +62,13 @@ const App = () => {
         </div>
       </nav>
 
-      <div className="pt-16 flex-grow bg-cover bg-center" style={{ backgroundImage: "url('bgimg.webp')" }}>
+      <div className="pt-16 flex-grow bg-cover bg-center backgroundGrayAnim" style={{ backgroundImage: "url('bgimg.webp')", backgroundBlendMode: "multiply", backgroundColor: "#8d8d8d"}}>
         <div className="container mx-auto flex flex-col lg:flex-row pt-4">
           <div className="w-full lg:w-3/4 pr-4 pl-4">
             {sections.filter(section => section.title === 'Featured Projects').map((section, sectionIndex) => (
               <section key={sectionIndex} className="h-full">
                 <h2 className="text-4xl font-bold text-center mb-6 underline project-title">{section.title}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
                   {section.projects.map((project, projectIndex) => (
                     <div key={projectIndex} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg pb-3 hover:scale-105 transform transition duration-150">
                       <a href={project.link}>
@@ -88,10 +88,10 @@ const App = () => {
                         ) : (
                           <img className="w-full" src={resolveUrl(project.media)} alt={project.title} />
                         )}
-                      </a>
+                      
                       <div className="p-2 pl-4">
                         <h3 className="text-2xl font-bold underline project-title mb-2">{project.title}</h3>
-                        <p className='pl-1 pr-1'>{project.description}</p>
+                        <p className='pl-1 pr-1 limitToTwoLines'>{project.description}</p>
                         {project.github && (
                           <div className="pt-2">
                             <a href={project.github} className="text-gray-400 hover:text-gray-200">
@@ -100,6 +100,7 @@ const App = () => {
                           </div>
                         )}
                       </div>
+                      </a>
                     </div>
                   ))}
                 </div>
